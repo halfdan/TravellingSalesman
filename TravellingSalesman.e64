@@ -1,0 +1,15 @@
+# TravellingSalesman project file
+
+TARGET = TravellingSalesman
+DESTDIR =
+
+GCOPT =
+GLOPT =
+
+GOFILES = \
+	main.go \
+	doc.go \
+	ga.go \
+	ga/travelling_salesman.go \
+	distance_matrix.go \
+	gene.go
