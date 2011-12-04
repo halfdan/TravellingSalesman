@@ -116,8 +116,8 @@ func (ts *TravellingSalesman) Crossover() {
 			nextN := findNextCity(&(ts.genes[n].Data), currentCity)
 			nextM := findNextCity(&(ts.genes[m].Data), currentCity)
 			
-			existN := isInArray(&(newGenes[i].Data), nextN)
-			existM := isInArray(&(newGenes[i].Data), nextM)
+			existN := isInArray(newGenes[i].Data[0:k], nextN)
+			existM := isInArray(newGenes[i].Data[0:k], nextM)
 			
 			// n exists, m doesnt -> take m
 			if existN && !existM {
@@ -219,7 +219,7 @@ func findNextCity(arr *[]int, currentCity int) int {
 
 func findNextRandomCity(exist []int, comp *[]int) (city int) {
 	for i:=0; i < len(*comp); i++ {
-		cityExists := isInArray(&exist, (*comp)[i])
+		cityExists := isInArray(exist, (*comp)[i])
 		if !cityExists {
 			city = (*comp)[i]
 			return
@@ -237,10 +237,10 @@ func shuffleArray(arr *[]int) {
 	}
 }
 
-func isInArray(arr *[]int, value int) (exists bool) {
+func isInArray(arr []int, value int) (exists bool) {
 	exists = false
-	for i:=0; i<len(*arr); i++ {
-		if (*arr)[i] == value {
+	for i:=0; i<len(arr); i++ {
+		if arr[i] == value {
 			exists = true
 			return
 		}
